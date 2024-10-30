@@ -3,13 +3,37 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #FFFCF8;
+  /* --foreground: #171717; */
+  --foreground: #FFFCF8;
+
+
+
+  --sidebar-bg: #f5f5f5;
+  --main-bg: #ffffff;
+  --bmi-sidebar-bg: #333333;
+  --card-bg: #ffffff;
+  --primary-text: #333333;
+  --secondary-text: #555555;
+  --bmi-text: #ffffff;
+  
+  --accent-blood-sugar: #ffad47;
+  --accent-heart-rate: #ff6464;
+  --accent-blood-pressure: #00c6ae;
+  --bmi-healthy: #3ac183;
+  
+  --activity-aerobics: #ffad47;
+  --activity-yoga: #3ac183;
+  --activity-meditation: #ff6464;
+
+  --icon-color: #555555;
+  --icon-hover: #000000;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #ffffff;
+    /* --background: #0a0a0a; */
     --foreground: #ededed;
   }
 }
@@ -18,4 +42,58 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 250px;
+  /* background-color: #f5f5f5; */
+  background-color: var(--sidebar-bg);
+  padding: 1rem;
+  @apply h-screen overflow-hidden;
+}
+
+.main-content {
+  /* display: flex;
+  flex-direction: row; */
+  padding: 2rem;
+  /* background-color: #f8f9fa;  */
+  /* Light background for content area */
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.bmi-calculator {
+  max-width: 400px;
+  padding: 1rem;
+  background-color: #333333;
+  color: white;
+  @apply w-full self-end h-full rounded-2xl;
+}
+
+.sidebar-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  color: #555;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.sidebar-item:hover {
+  color: #000; /* Change color on hover */
+}
+
+.icon {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.label {
+  font-size: 0.75rem;
 }

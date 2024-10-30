@@ -1,0 +1,66 @@
+.bmi-stats {
+    background-color: #333333;
+    color: #ffffff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .section-title {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
+  }
+  
+  .stat-row {
+    display: flex;
+    justify-content: space-between;
+    @apply flex-col gap-2;
+  }
+  
+  .stat {
+    display: flex;
+    flex-direction: row;
+    /* align-items: center; */
+    @apply px-3 py-2 gap-1 justify-between;
+  }
+  
+  .stat-label {
+    font-size: 12px;
+    color: #272927;
+  }
+  
+  .stat-value {
+    font-size: 12px;
+    width: 100%;
+    color: #272927;
+  }
+  
+  .bmi-value {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+  
+  .bmi-status {
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+  }
+  
+  .bmi-status.healthy {
+    background-color: #3AC183;
+  }
+  
+  .bmi-chart {
+    background-color: #444444;
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  
+  .bmi-chart-bar {
+    background-color: #3AC183;
+    height: 100%;
+  }
+  

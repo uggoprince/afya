@@ -1,0 +1,57 @@
+.metric-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 1rem;
+    border-left: 4px solid; /* Accent color will be applied here */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 150px;
+  }
+  .metric-card-header{
+    @apply grid grid-flow-col items-center gap-1;
+  }
+  .metric-card-header h3 {
+    font-size: 0.9rem;
+    color: #555555;
+    margin: 0;
+  }
+  
+  .metric-card-body {
+    display: flex;
+    align-items: baseline;
+    margin-top: 0.5rem;
+  }
+  
+  .metric-value {
+    font-size: 16px;
+    color: #333333;
+    font-weight: bold;
+  }
+  
+  .metric-unit {
+    font-size: 0.9rem;
+    color: #555555;
+    margin-left: 0.3rem;
+  }
+  
+  .metric-status {
+    margin-top: 0.5rem;
+  }
+  
+  .status-indicator {
+    font-size: 0.8rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    background-color: #e0f7e4; /* Green background for 'Normal' */
+    color: #3ac183; /* Green text for 'Normal' */
+  }
+  
+  .status-indicator.normal {
+    background-color: #e0f7e4;
+    color: #3ac183;
+  }
+  
+  /* Add other status colors if needed */
+  
