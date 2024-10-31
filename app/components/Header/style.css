@@ -1,0 +1,9 @@
+.header {
+    @apply w-full 
+    py-3 px-6 
+    static top-0 
+    left-0 right-0 
+    flex flex-row 
+    content-center
+    justify-between items-center shadow-lg;
+}
