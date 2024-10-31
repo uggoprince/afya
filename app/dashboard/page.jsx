@@ -1,17 +1,20 @@
+"use client";
 import { SideBar } from "../components/Sidebar";
 import SidebarItem from "../components/Sidebar/SidebarItem";
 import WelcomeCard from "../components/WelcomeCard";
 import MetricCard from "../components/MetricCard";
 import ActivityGrowthChart from "../components/ActivityGrowthChart";
 import BMICalculator from "../components/BMICalculator";
+// import DashBoardIcon from "../../public/dashboard.svg";
 
 export default function Home() {
     return (<div className="w-full flex flex-row overflow-hidden">
         <SideBar>
-            <SidebarItem link={'/'} />
-            <SidebarItem link={'/'} />
-            <SidebarItem link={'/'} />
-            <SidebarItem link={'/'} />
+            <SidebarItem label={'My Health'} link={'/'} icon={'../../public/dashboard.svg'} />
+            <SidebarItem label={'Medications'} link={'/'} />
+            <SidebarItem label={'Profile'} link={'/'} />
+            <SidebarItem label={'Settings'} link={'/'} />
+            <SidebarItem label={'Logout'} link={'/'} />
         </SideBar>
         <div className="main-content flex flex-col lg:flex-row flex-1 h-screen overflow-y-auto">
             <div className="flex flex-col flex-1 overflow-x-hidden w-full h-fit">
