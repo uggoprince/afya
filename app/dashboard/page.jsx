@@ -11,7 +11,7 @@ import ProfileIcon from "../../public/profile.svg";
 import SettingsIcon from "../../public/settings.svg";
 import LogoutIcon from "../../public/logout.svg";
 
-export default function Home() {
+export default function PatientDashboard() {
     return (<div className="w-full flex flex-row overflow-hidden">
         <SideBar>
             <SidebarItem label={'My Health'} link={'/dashboard'} icon={'../../public/dashboard.svg'}>
