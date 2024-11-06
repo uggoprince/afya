@@ -60,10 +60,10 @@ body {
 .main-content {
   /* display: flex;
   flex-direction: row; */
-  padding: 2rem;
+  /* padding: 2rem; */
   /* background-color: #f8f9fa;  */
   /* Light background for content area */
-  border-radius: 8px;
+  /* border-radius: 8px; */
   /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); */
 }
 

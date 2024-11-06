@@ -2,8 +2,13 @@
 import { SideBar } from "../components/Sidebar";
 import SidebarItem from "../components/Sidebar/SidebarItem";
 import React, { useEffect, useState } from 'react';
-import { Avatar, Button, List, Skeleton } from 'antd';
+import { Avatar, Button, List, Skeleton, Modal, Form, Input, Flex, Checkbox, Space } from 'antd';
+import { LockOutlined, UserOutlined, PlusOutlined, MinusCircleOutlined } from '@ant-design/icons';
 import MedicSidebar from "../components/Sidebar/MedicSidebar";
+import { ExclamationCircleFilled } from '@ant-design/icons';
+
+const { confirm } = Modal;
+
 const count = 9;
 const fakeDataUrl = `https://randomuser.me/api/?results=${count}&inc=name,gender,email,nat,picture&noinfo`;
 
@@ -59,13 +64,24 @@ export default function DoctorDashboard() {
         <Button onClick={onLoadMore}>loading more</Button>
       </div>
     ) : null;
+    const [open, setOpen] = useState(false);
+    const toggleModal = () => {
+      setOpen(!open);
+    }
     return (
+      <>
         <div className="w-full flex flex-row overflow-hidden">
             <MedicSidebar />
-            <div className="main-content flex flex-col flex-1 h-screen overflow-y-auto">
-                <div className="w-full font-bold text-[20px] 
-                    text-sky-950 fixed bg-[#f5f5f5] z-[20] mt-[-32px] ml-[-32px] px-8 py-2">Prescribtions</div>
-                <div className=" max-w-[800px] w-full mb-[200px] mt-[50px] h-auto">
+            <div className="main-content flex flex-col flex-1 h-screen overflow-y-auto relative">
+                <div className="font-bold w-full text-[20px] bg-[#FFFCF8]
+                    text-sky-950 sticky top-0 z-[20] px-8 py-2 flex flex-row justify-between">
+                  {'Prescribtions'}
+                  <button className='
+                  bg-sky-400 hover:bg-sky-400/80 
+                  text-white px-2 py-1 rounded'
+                  onClick={toggleModal}>Create Prescription</button>
+                </div>
+                <div className="p-8 max-w-[800px] w-full mb-[200px] h-auto">
                     <List
                         className="demo-loadmore-list w-full"
                         loading={initLoading}
@@ -91,5 +107,120 @@ export default function DoctorDashboard() {
                 </div>
             </div>
         </div>
+        <Modal
+          title="New Prescribtion"
+          open={open}
+          onOk={() => {
+            setOpen(false);
+          }}
+          onCancel={() => setOpen(false)}
+          okText={'Submit'}
+        >
+          <Form
+            name="login"
+            initialValues={{
+              remember: false,
+            }}
+            onFinish={() => {}}
+            className="w-full"
+          >
+            <Form.Item
+              name="patientId"
+              rules={[
+                {
+                  // required: true,
+                  // message: 'Please input your Username!',
+                },
+              ]}
+            >
+              <Input placeholder="Patient Id" />
+            </Form.Item>
+            <Form.Item
+              name="password"
+              rules={[
+                {
+                  // required: true,
+                  // message: 'Please input your Password!',
+                },
+              ]}
+            >
+              <Input placeholder="Patient Name" />
+              {/* <Input prefix={<LockOutlined />} type="password" placeholder="Password" /> */}
+            </Form.Item>
+
+            <Form.List name="users">
+              {(fields, { add, remove }) => (
+                <>
+                  {fields.map(({ key, name, ...restField }) => (
+                    <Space
+                      key={key}
+                      style={{
+                        display: 'flex',
+                        marginBottom: 8,
+                      }}
+                      align="baseline"
+                    >
+                      <Form.Item
+                        {...restField}
+                        name={[name, 'first']}
+                        rules={[
+                          {
+                            required: true,
+                            message: 'Missing medication.',
+                          },
+                        ]}
+                      >
+                        <Input placeholder="Medication" />
+                      </Form.Item>
+                      <Form.Item
+                        {...restField}
+                        name={[name, 'last']}
+                        rules={[
+                          {
+                            required: true,
+                            message: 'Missing dosage',
+                          },
+                        ]}
+                      >
+                        <Input placeholder="Dosage" />
+                      </Form.Item>
+                      <Form.Item
+                        {...restField}
+                        name={[name, 'last']}
+                        rules={[
+                          {
+                            required: true,
+                            message: 'Missing frequency',
+                          },
+                        ]}
+                      >
+                        <Input placeholder="Frequency" />
+                      </Form.Item>
+                      <Form.Item
+                        {...restField}
+                        name={[name, 'last']}
+                        rules={[
+                          {
+                            required: true,
+                            message: 'Missing duration.',
+                          },
+                        ]}
+                      >
+                        <Input placeholder="Duration" />
+                      </Form.Item>
+                      <MinusCircleOutlined onClick={() => remove(name)} />
+                    </Space>
+                  ))}
+                  <Form.Item>
+                    <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
+                      Add field
+                    </Button>
+                  </Form.Item>
+                </>
+              )}
+            </Form.List>
+          </Form>
+        </Modal>
+      </>
     );
 }

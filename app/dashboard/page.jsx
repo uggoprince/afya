@@ -24,7 +24,7 @@ export default function PatientDashboard() {
             <SidebarItem label={'Settings'} link={'/dashboard'}><SettingsIcon fill={'#555555'}/></SidebarItem>
             <SidebarItem label={'Logout'} link={'/'}><LogoutIcon fill={'#555555'}/></SidebarItem>
         </SideBar>
-        <div className="main-content flex flex-col lg:flex-row flex-1 h-screen overflow-y-auto">
+        <div className="main-content p-8 flex flex-col lg:flex-row flex-1 h-screen overflow-y-auto">
             <div className="flex flex-col flex-1 overflow-x-hidden w-full h-fit">
                 <WelcomeCard username="User" date="October 30, 2024" />
                 <div className="metrics w-full grid grid-flow-col">

@@ -62,8 +62,10 @@ export default function RequestsToDoctor() {
             <MedicSidebar />
             <div className="main-content flex flex-col flex-1 h-screen overflow-y-auto">
                 <div className="w-full font-bold text-[20px] 
-                    text-sky-950 fixed bg-[#f5f5f5] z-[20] mt-[-32px] ml-[-32px] px-8 py-2">Requests</div>
-                <div className=" max-w-[800px] w-full mb-[200px] mt-[50px] h-auto">
+                    text-sky-950 fixed bg-[#FFFCF8] z-[20] px-8 py-2 flex flex-row justify-between">
+                        <div className='self-start'>{'Requests'}</div>
+                </div>
+                <div className="p-8 max-w-[800px] w-full mb-[200px] mt-[50px] h-auto">
                     <List
                         className="demo-loadmore-list w-full"
                         loading={initLoading}

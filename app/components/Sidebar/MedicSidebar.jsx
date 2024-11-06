@@ -9,7 +9,7 @@ export default function MedicSidebar() {
             <SidebarItem label={'Requests'} link={'/medic/requests'}>
             </SidebarItem>
             <SidebarItem label={'Patients'} link={'/medic/patients'}></SidebarItem>
-            <SidebarItem label={'Inventories'} link={'/medic'}></SidebarItem>
+            {/* <SidebarItem label={'Inventories'} link={'/medic'}></SidebarItem> */}
             <SidebarItem label={'Settings'} link={'/medic'}></SidebarItem>
             <SidebarItem label={'Logout'} link={'/'}></SidebarItem>
         </SideBar>

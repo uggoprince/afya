@@ -12,7 +12,7 @@ export default function Home() {
             <div className="flex flex-row w-full h-auto justify-between">
               <div className="text-sky-900 break-words font-bold content-center flex-1 flex flex-col justify-around gap-4">
                 <div className="font-bold text-[60px] text-sky-800 md:self-center">{'AFYA cares for you'}</div>
-                <div className=" leading-10 text-[30px]">
+                <div className=" leading-10 text-[20px]">
                   {`A platform that enables physicians to securely 
                   send patients prescriptions, keep patients medication records, 
                   provide easy access to quality medications, help patients to adhere to prescriptions 
