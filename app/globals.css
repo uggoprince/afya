@@ -54,7 +54,7 @@ body {
   /* background-color: #f5f5f5; */
   background-color: var(--sidebar-bg);
   /* padding: 1rem; */
-  @apply h-screen overflow-hidden pt-[45px] px-4;
+  @apply h-screen pt-[45px] px-4 sticky top-0;
 }
 
 .main-content {
@@ -70,7 +70,7 @@ body {
 .bmi-calculator {
   max-width: 400px;
   padding: 1rem;
-  background-color: #333333;
+  /* background-color: #333333; */
   color: white;
   @apply w-full self-end h-full rounded-2xl;
 }

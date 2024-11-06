@@ -12,6 +12,7 @@
     "@svgr/webpack": "^8.1.0",
     "antd": "^5.21.6",
     "chart.js": "^4.4.6",
+    "mongodb": "^6.10.0",
     "next": "15.0.2",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",

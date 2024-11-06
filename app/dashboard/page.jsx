@@ -10,24 +10,16 @@ import MedicationIcon from "../../public/medication.svg";
 import ProfileIcon from "../../public/profile.svg";
 import SettingsIcon from "../../public/settings.svg";
 import LogoutIcon from "../../public/logout.svg";
+import UserSidebar from "../components/Sidebar/UserSidebar";
 
 export default function PatientDashboard() {
-    return (<div className="w-full flex flex-row overflow-hidden">
-        <SideBar>
-            <SidebarItem label={'My Health'} link={'/dashboard'} icon={'../../public/dashboard.svg'}>
-                <DashBoardIcon fill={'#555555'} />
-            </SidebarItem>
-            <SidebarItem label={'Medications'} link={'/dashboard'}>
-                <MedicationIcon fill={'#555555'} />
-            </SidebarItem>
-            <SidebarItem label={'Profile'} link={'/dashboard'}><ProfileIcon fill={'#555555'} /></SidebarItem>
-            <SidebarItem label={'Settings'} link={'/dashboard'}><SettingsIcon fill={'#555555'}/></SidebarItem>
-            <SidebarItem label={'Logout'} link={'/'}><LogoutIcon fill={'#555555'}/></SidebarItem>
-        </SideBar>
-        <div className="main-content p-8 flex flex-col lg:flex-row flex-1 h-screen overflow-y-auto">
-            <div className="flex flex-col flex-1 overflow-x-hidden w-full h-fit">
+    return (<div className="w-full flex flex-row h-screen relative">
+        <UserSidebar />
+        <div className="main-content flex flex-row md:flex-col flex-1 min-h-screen overflow-x-hidden
+            overflow-y-auto p-8 flex-wrap pb-[100px]">
+            <div className="flex flex-col flex-1 over w-full h-fit max-w-[500px]">
                 <WelcomeCard username="User" date="October 30, 2024" />
-                <div className="metrics w-full grid grid-flow-col">
+                <div className="metrics w-full flex flex-row flex-wrap justify-between gap-4">
                     <MetricCard
                         iconSrc={'/blood_sugar.svg'}
                         altText={"Blood sugar"}
@@ -49,7 +41,7 @@ export default function PatientDashboard() {
                 </div>
                 <ActivityGrowthChart />
             </div>
-            <div className="flex-1 w-fit self-end h-full  flex flex-col">
+            <div className="flex-1 w-fit self-end h-fit  flex flex-col">
                 <BMICalculator />
             </div>
             {/* <UpcomingDosage /> */}

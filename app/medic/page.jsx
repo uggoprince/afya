@@ -2,8 +2,8 @@
 import { SideBar } from "../components/Sidebar";
 import SidebarItem from "../components/Sidebar/SidebarItem";
 import React, { useEffect, useState } from 'react';
-import { Avatar, Button, List, Skeleton, Modal, Form, Input, Flex, Checkbox, Space } from 'antd';
-import { LockOutlined, UserOutlined, PlusOutlined, MinusCircleOutlined } from '@ant-design/icons';
+import { Avatar, Button, List, Skeleton, Modal, Form, Input, Flex, Checkbox, Space, Spin } from 'antd';
+import { LockOutlined, UserOutlined, PlusOutlined, MinusCircleOutlined, LoadingOutlined } from '@ant-design/icons';
 import MedicSidebar from "../components/Sidebar/MedicSidebar";
 import { ExclamationCircleFilled } from '@ant-design/icons';
 
@@ -107,120 +107,122 @@ export default function DoctorDashboard() {
                 </div>
             </div>
         </div>
-        <Modal
-          title="New Prescribtion"
-          open={open}
-          onOk={() => {
-            setOpen(false);
-          }}
-          onCancel={() => setOpen(false)}
-          okText={'Submit'}
-        >
-          <Form
-            name="login"
-            initialValues={{
-              remember: false,
+        <Spin spinning={true} indicator={<LoadingOutlined spin />} size="large">
+          <Modal
+            title="New Prescribtion"
+            open={open}
+            onOk={() => {
+              setOpen(false);
             }}
-            onFinish={() => {}}
-            className="w-full"
+            onCancel={() => setOpen(false)}
+            okText={'Submit'}
           >
-            <Form.Item
-              name="patientId"
-              rules={[
-                {
-                  // required: true,
-                  // message: 'Please input your Username!',
-                },
-              ]}
+            <Form
+              name="login"
+              initialValues={{
+                remember: false,
+              }}
+              onFinish={() => {}}
+              className="w-full"
             >
-              <Input placeholder="Patient Id" />
-            </Form.Item>
-            <Form.Item
-              name="password"
-              rules={[
-                {
-                  // required: true,
-                  // message: 'Please input your Password!',
-                },
-              ]}
-            >
-              <Input placeholder="Patient Name" />
-              {/* <Input prefix={<LockOutlined />} type="password" placeholder="Password" /> */}
-            </Form.Item>
+              <Form.Item
+                name="patientId"
+                rules={[
+                  {
+                    // required: true,
+                    // message: 'Please input your Username!',
+                  },
+                ]}
+              >
+                <Input placeholder="Patient Id" />
+              </Form.Item>
+              <Form.Item
+                name="password"
+                rules={[
+                  {
+                    // required: true,
+                    // message: 'Please input your Password!',
+                  },
+                ]}
+              >
+                <Input placeholder="Patient Name" />
+                {/* <Input prefix={<LockOutlined />} type="password" placeholder="Password" /> */}
+              </Form.Item>
 
-            <Form.List name="users">
-              {(fields, { add, remove }) => (
-                <>
-                  {fields.map(({ key, name, ...restField }) => (
-                    <Space
-                      key={key}
-                      style={{
-                        display: 'flex',
-                        marginBottom: 8,
-                      }}
-                      align="baseline"
-                    >
-                      <Form.Item
-                        {...restField}
-                        name={[name, 'first']}
-                        rules={[
-                          {
-                            required: true,
-                            message: 'Missing medication.',
-                          },
-                        ]}
+              <Form.List name="users">
+                {(fields, { add, remove }) => (
+                  <>
+                    {fields.map(({ key, name, ...restField }) => (
+                      <Space
+                        key={key}
+                        style={{
+                          display: 'flex',
+                          marginBottom: 8,
+                        }}
+                        align="baseline"
                       >
-                        <Input placeholder="Medication" />
-                      </Form.Item>
-                      <Form.Item
-                        {...restField}
-                        name={[name, 'last']}
-                        rules={[
-                          {
-                            required: true,
-                            message: 'Missing dosage',
-                          },
-                        ]}
-                      >
-                        <Input placeholder="Dosage" />
-                      </Form.Item>
-                      <Form.Item
-                        {...restField}
-                        name={[name, 'last']}
-                        rules={[
-                          {
-                            required: true,
-                            message: 'Missing frequency',
-                          },
-                        ]}
-                      >
-                        <Input placeholder="Frequency" />
-                      </Form.Item>
-                      <Form.Item
-                        {...restField}
-                        name={[name, 'last']}
-                        rules={[
-                          {
-                            required: true,
-                            message: 'Missing duration.',
-                          },
-                        ]}
-                      >
-                        <Input placeholder="Duration" />
-                      </Form.Item>
-                      <MinusCircleOutlined onClick={() => remove(name)} />
-                    </Space>
-                  ))}
-                  <Form.Item>
-                    <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
-                      Add field
-                    </Button>
-                  </Form.Item>
-                </>
-              )}
-            </Form.List>
-          </Form>
-        </Modal>
+                        <Form.Item
+                          {...restField}
+                          name={[name, 'first']}
+                          rules={[
+                            {
+                              required: true,
+                              message: 'Missing medication.',
+                            },
+                          ]}
+                        >
+                          <Input placeholder="Medication" />
+                        </Form.Item>
+                        <Form.Item
+                          {...restField}
+                          name={[name, 'last']}
+                          rules={[
+                            {
+                              required: true,
+                              message: 'Missing dosage',
+                            },
+                          ]}
+                        >
+                          <Input placeholder="Dosage" />
+                        </Form.Item>
+                        <Form.Item
+                          {...restField}
+                          name={[name, 'last']}
+                          rules={[
+                            {
+                              required: true,
+                              message: 'Missing frequency',
+                            },
+                          ]}
+                        >
+                          <Input placeholder="Frequency" />
+                        </Form.Item>
+                        <Form.Item
+                          {...restField}
+                          name={[name, 'last']}
+                          rules={[
+                            {
+                              required: true,
+                              message: 'Missing duration.',
+                            },
+                          ]}
+                        >
+                          <Input placeholder="Duration" />
+                        </Form.Item>
+                        <MinusCircleOutlined onClick={() => remove(name)} />
+                      </Space>
+                    ))}
+                    <Form.Item>
+                      <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
+                        Add field
+                      </Button>
+                    </Form.Item>
+                  </>
+                )}
+              </Form.List>
+            </Form>
+          </Modal>
+        </Spin>
       </>
     );
 }
