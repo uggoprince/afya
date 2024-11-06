@@ -1,14 +1,12 @@
 "use client";
-import { SideBar } from "../components/Sidebar";
-import SidebarItem from "../components/Sidebar/SidebarItem";
 import React, { useEffect, useState } from 'react';
 import { Avatar, Button, List, Skeleton } from 'antd';
-import MedicSidebar from "../components/Sidebar/MedicSidebar";
+import MedicSidebar from "@/app/components/Sidebar/MedicSidebar";
 const count = 9;
 const fakeDataUrl = `https://randomuser.me/api/?results=${count}&inc=name,gender,email,nat,picture&noinfo`;
 
 
-export default function DoctorDashboard() {
+export default function RequestsToDoctor() {
     const [initLoading, setInitLoading] = useState(true);
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
@@ -64,7 +62,7 @@ export default function DoctorDashboard() {
             <MedicSidebar />
             <div className="main-content flex flex-col flex-1 h-screen overflow-y-auto">
                 <div className="w-full font-bold text-[20px] 
-                    text-sky-950 fixed bg-[#f5f5f5] z-[20] mt-[-32px] ml-[-32px] px-8 py-2">Prescribtions</div>
+                    text-sky-950 fixed bg-[#f5f5f5] z-[20] mt-[-32px] ml-[-32px] px-8 py-2">Requests</div>
                 <div className=" max-w-[800px] w-full mb-[200px] mt-[50px] h-auto">
                     <List
                         className="demo-loadmore-list w-full"
@@ -74,16 +72,15 @@ export default function DoctorDashboard() {
                         dataSource={list}
                         renderItem={(item) => (
                             <List.Item
-                            actions={[<a key="list-loadmore-edit" className=" text-blue-700">View</a>, 
-                                <a key="list-loadmore-more" className=" text-blue-700">Update</a>]}
+                            actions={[<a key="list-loadmore-edit" className=" text-blue-700">View</a>]}
                             >
                             <Skeleton avatar title={false} loading={item.loading} active>
                                 <List.Item.Meta
                                 avatar={<Avatar src={item.picture.large} size={64} />}
                                 title={<span className=" text-[#458FF6]">{item.name?.last}</span>}
-                                description={<span className=" text-sky-950">{"Take the following, prescribtion for your ailment."}</span>}
+                                description={<span className=" text-sky-950">{"I need medical help for my malaria and asthma."}</span>}
                                 />
-                                <div className=" text-sky-950">5 doses</div>
+                                <div className=" text-sky-950">Urgent</div>
                             </Skeleton>
                             </List.Item>
                         )}

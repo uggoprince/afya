@@ -1,14 +1,13 @@
 "use client";
-import { SideBar } from "../components/Sidebar";
-import SidebarItem from "../components/Sidebar/SidebarItem";
 import React, { useEffect, useState } from 'react';
-import { Avatar, Button, List, Skeleton } from 'antd';
-import MedicSidebar from "../components/Sidebar/MedicSidebar";
+import { Avatar, Button, Card, List, Skeleton } from 'antd';
+import MedicSidebar from "@/app/components/Sidebar/MedicSidebar";
 const count = 9;
 const fakeDataUrl = `https://randomuser.me/api/?results=${count}&inc=name,gender,email,nat,picture&noinfo`;
 
+const { Meta } = Card;
 
-export default function DoctorDashboard() {
+export default function RequestsToDoctor() {
     const [initLoading, setInitLoading] = useState(true);
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
@@ -64,29 +63,30 @@ export default function DoctorDashboard() {
             <MedicSidebar />
             <div className="main-content flex flex-col flex-1 h-screen overflow-y-auto">
                 <div className="w-full font-bold text-[20px] 
-                    text-sky-950 fixed bg-[#f5f5f5] z-[20] mt-[-32px] ml-[-32px] px-8 py-2">Prescribtions</div>
-                <div className=" max-w-[800px] w-full mb-[200px] mt-[50px] h-auto">
+                    text-sky-950 fixed bg-[#f5f5f5] z-[20] mt-[-32px] ml-[-32px] px-8 py-2">Patients</div>
+                <div className="w-full flex justify-evenly mb-[200px] mt-[50px] h-auto">
                     <List
-                        className="demo-loadmore-list w-full"
-                        loading={initLoading}
-                        itemLayout="horizontal"
-                        loadMore={loadMore}
-                        dataSource={list}
-                        renderItem={(item) => (
-                            <List.Item
-                            actions={[<a key="list-loadmore-edit" className=" text-blue-700">View</a>, 
-                                <a key="list-loadmore-more" className=" text-blue-700">Update</a>]}
-                            >
-                            <Skeleton avatar title={false} loading={item.loading} active>
-                                <List.Item.Meta
-                                avatar={<Avatar src={item.picture.large} size={64} />}
-                                title={<span className=" text-[#458FF6]">{item.name?.last}</span>}
-                                description={<span className=" text-sky-950">{"Take the following, prescribtion for your ailment."}</span>}
-                                />
-                                <div className=" text-sky-950">5 doses</div>
-                            </Skeleton>
-                            </List.Item>
-                        )}
+                      grid={{ gutter: 8,
+                        xs: 1,  // 1 column for extra-small screens
+                        sm: 1,  // 1 column for small screens
+                        md: 2,  // 2 columns for medium screens
+                        lg: 3,  // 4 columns for large screens
+                        xl: 4,  // 4 columns for extra-large screens
+                       }}
+                      dataSource={list}
+                      renderItem={(item) => (
+                        <List.Item style={{ display: 'flex', justifyContent: 'center' }}>
+                          <Card
+                            hoverable
+                            className='w-full max-w-[300px] md:max-w-[180px]'
+                            cover={<img alt="example" src={`${item.picture.large}`} />}
+                          >
+                            <Meta title={<span className=" text-[#458FF6]">{item.name?.title} {item.name?.first}</span>}
+                              description="Engineer" />
+                            <div className='pt-2 text-slate-600'>Prescibtions: 5</div>
+                          </Card>
+                        </List.Item>
+                      )}
                     />
                 </div>
             </div>
