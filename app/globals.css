@@ -72,7 +72,7 @@ body {
   padding: 1rem;
   /* background-color: #333333; */
   color: white;
-  @apply w-full self-end h-full rounded-2xl;
+  @apply w-full self-end h-full rounded-2xl bg-sky-100/60;
 }
 
 .sidebar-item {
