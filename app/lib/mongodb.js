@@ -24,6 +24,4 @@ if (process.env.NODE_ENV === 'development') {
   clientPromise = client.connect();
 }
 
-console.log(clientPromise);
-
 export default clientPromise;

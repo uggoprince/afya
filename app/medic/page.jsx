@@ -18,6 +18,33 @@ export default function DoctorDashboard() {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   const [list, setList] = useState([]);
+  const [form] = Form.useForm();
+  const [open, setOpen] = useState(false);
+    const toggleModal = () => {
+      setOpen(!open);
+    }
+    const handelFormSubmit = () => {
+      form
+        .validateFields()
+        .then(async (values) => {
+          console.log('Form Data:', values); // Access form data
+          // form.resetFields(); // Reset the form after successful submission
+          const res = await fetch('/api/prescriptions', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(values),
+          });
+          if (res.ok) {
+            console.log(res);
+            toggleModal();
+          }
+        })
+        .catch((errorInfo) => {
+          console.log('Validation Failed:', errorInfo); // Handle validation errors
+        });
+  };
   useEffect(() => {
     fetch(fakeDataUrl)
       .then((res) => res.json())
@@ -26,7 +53,10 @@ export default function DoctorDashboard() {
         setData(res.results);
         setList(res.results);
       });
-  }, []);
+      if (!open) {
+        form.resetFields();
+      }
+  }, [open]);
     const onLoadMore = () => {
         setLoading(true);
         setList(
@@ -64,10 +94,7 @@ export default function DoctorDashboard() {
         <Button onClick={onLoadMore}>loading more</Button>
       </div>
     ) : null;
-    const [open, setOpen] = useState(false);
-    const toggleModal = () => {
-      setOpen(!open);
-    }
+
     return (
       <>
         <div className="w-full flex flex-row overflow-hidden">
@@ -112,13 +139,15 @@ export default function DoctorDashboard() {
             title="New Prescribtion"
             open={open}
             onOk={() => {
-              setOpen(false);
+              // setOpen(false);
+              handelFormSubmit();
             }}
             onCancel={() => setOpen(false)}
             okText={'Submit'}
           >
             <Form
-              name="login"
+              form={form}
+              name="prescription"
               initialValues={{
                 remember: false,
               }}
@@ -129,19 +158,19 @@ export default function DoctorDashboard() {
                 name="patientId"
                 rules={[
                   {
-                    // required: true,
-                    // message: 'Please input your Username!',
+                    required: true,
+                    message: 'Please input the patient id!',
                   },
                 ]}
               >
                 <Input placeholder="Patient Id" />
               </Form.Item>
               <Form.Item
-                name="password"
+                name="patientName"
                 rules={[
                   {
-                    // required: true,
-                    // message: 'Please input your Password!',
+                    required: true,
+                    message: 'Please input the patient name!',
                   },
                 ]}
               >
@@ -149,8 +178,16 @@ export default function DoctorDashboard() {
                 {/* <Input prefix={<LockOutlined />} type="password" placeholder="Password" /> */}
               </Form.Item>
 
-              <Form.List name="users">
-                {(fields, { add, remove }) => (
+              <Form.List name="patientPrescription" rules={[
+                {
+                  validator: async (_, items) => {
+                    if (!items || items.length === 0) {
+                      return Promise.reject(new Error('At least one dosage is required'));
+                    }
+                  },
+                },
+              ]}>
+                {(fields, { add, remove }, { errors }) => (
                   <>
                     {fields.map(({ key, name, ...restField }) => (
                       <Space
@@ -163,7 +200,7 @@ export default function DoctorDashboard() {
                       >
                         <Form.Item
                           {...restField}
-                          name={[name, 'first']}
+                          name={[name, 'medication']}
                           rules={[
                             {
                               required: true,
@@ -175,7 +212,7 @@ export default function DoctorDashboard() {
                         </Form.Item>
                         <Form.Item
                           {...restField}
-                          name={[name, 'last']}
+                          name={[name, 'dosage']}
                           rules={[
                             {
                               required: true,
@@ -187,7 +224,7 @@ export default function DoctorDashboard() {
                         </Form.Item>
                         <Form.Item
                           {...restField}
-                          name={[name, 'last']}
+                          name={[name, 'frequency']}
                           rules={[
                             {
                               required: true,
@@ -199,7 +236,7 @@ export default function DoctorDashboard() {
                         </Form.Item>
                         <Form.Item
                           {...restField}
-                          name={[name, 'last']}
+                          name={[name, 'duration']}
                           rules={[
                             {
                               required: true,
@@ -212,6 +249,7 @@ export default function DoctorDashboard() {
                         <MinusCircleOutlined onClick={() => remove(name)} />
                       </Space>
                     ))}
+                    <Form.ErrorList errors={errors} />
                     <Form.Item>
                       <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
                         Add field

@@ -3,8 +3,8 @@ import clientPromise from './mongodb';
 
 export async function insertPrescription(data) {
   const client = await clientPromise;
-  const db = client.db('mydatabase');
-  return await db.collection('users').insertOne(data);
+  const db = client.db('afya_db');
+  return await db.collection('prescriptions').insertOne(data);
 }
 
 export async function getPrescriptions() {
