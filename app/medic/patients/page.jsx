@@ -63,7 +63,7 @@ export default function RequestsToDoctor() {
             <MedicSidebar />
             <div className="main-content flex flex-col flex-1 h-screen overflow-y-auto">
                 <div className="w-full font-bold text-[20px] 
-                    text-sky-950 fixed bg-[#FFFCF8] z-[20] px-8 py-2">Patients</div>
+                    text-sky-950 fixed bg-[#FFFFFF] z-[20] px-8 py-2">Patients</div>
                 <div className="w-full p-8 flex justify-evenly mb-[200px] mt-[50px] h-auto">
                     <List
                       grid={{ gutter: 8,

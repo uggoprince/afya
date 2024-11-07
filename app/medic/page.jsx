@@ -100,7 +100,7 @@ export default function DoctorDashboard() {
         <div className="w-full flex flex-row overflow-hidden">
             <MedicSidebar />
             <div className="main-content flex flex-col flex-1 h-screen overflow-y-auto relative">
-                <div className="font-bold w-full text-[20px] bg-[#FFFCF8]
+                <div className="font-bold w-full text-[20px] bg-[#FFFFFF]
                     text-sky-950 sticky top-0 z-[20] px-8 py-2 flex flex-row justify-between">
                   {'Prescribtions'}
                   <button className='

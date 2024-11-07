@@ -2,11 +2,6 @@
 import { insertPrescription, getPrescriptions } from '../../lib/db';
 
 export async function POST(req) {
-  // const { name, email } = req.body;
-
-//   if (!name || !email) {
-//     return res.status(400).json({ message: 'Name and email are required' });
-//   }
   const body = await req.json();
 
   try {
@@ -25,26 +20,33 @@ export async function POST(req) {
   }
 }
 
-// async function handleGet(req, res) {
-//   const { email } = req.query;
+export async function GET(req) {
+  try {
+    // Fetch all prescriptions from the database
+    const prescriptions = await getPrescriptions();
 
-//   if (!email) {
-//     return res.status(400).json({ message: 'Email is required to fetch user' });
-//   }
+    // Return the prescriptions as JSON with a 200 status code
+    return new Response(JSON.stringify(prescriptions), {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+  } catch (error) {
+    console.error('Error fetching prescriptions:', error);
 
-//   try {
-//     const user = await getUser(email);
-
-//     if (!user) {
-//       return res.status(404).json({ message: 'User not found' });
-//     }
-
-//     res.status(200).json(user);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ message: 'Internal server error' });
-//   }
-// }
+    // If an error occurs, return a 500 error with a message
+    return new Response(
+      JSON.stringify({ message: 'Failed to fetch prescriptions' }),
+      {
+        status: 500,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+  }
+}
 
 // Main handler that routes requests based on method
 // export default async function handler(req, res) {

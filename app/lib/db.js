@@ -10,5 +10,5 @@ export async function insertPrescription(data) {
 export async function getPrescriptions() {
   const client = await clientPromise;
   const db = client.db('afya_db');
-  return await db.collection('prescriptions').findAll ();
+  return await db.collection('prescriptions').find({}).toArray();
 }
